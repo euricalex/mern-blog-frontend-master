@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 
 import styles from './Header.module.scss';
 import Container from '@mui/material/Container';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, selectIsAuth } from '../redux/slices/auth';
 
@@ -12,7 +12,7 @@ export const Header = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const userData = useSelector(state => state.auth.data);
-
+const location = useLocation();
   const onClickLogout = () => {
     if(window.confirm('Are you sure want to log?')) {
       dispatch(logout());
@@ -21,20 +21,26 @@ export const Header = () => {
     }
     
   };
-
+const isLoginPage = location.pathname === '/login';
   return (
     <div className={styles.root}>
       <Container maxWidth="lg">
         <div className={styles.inner}>
-          {isAuth && userData ? (
-               <Link className={styles.logo} to="/">
-               <div>{`${userData.fullName} BLOG`}</div>
-             </Link>
-          ) : 
-          <Link className={styles.logo} to="/">
-          <div>BLOG</div>
-        </Link>
-          }
+          {!isLoginPage && (
+            <>
+               {isAuth && userData ? (
+                <Link className={styles.logo} to="/">
+                <div>{`${userData.fullName} BLOG`}</div>
+              </Link>
+           ) : 
+           <Link className={styles.logo} to="/">
+           <div>BLOG</div>
+         </Link>
+           } 
+           </>
+          )}
+          <div className={styles.emptyButton}></div>
+      
 
        
           <div className={styles.buttons}>

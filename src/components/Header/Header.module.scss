@@ -26,7 +26,10 @@
     background-color: #4361ee;
   }
 }
-
+.emptyButton {
+  visibility: hidden; /* Делаем кнопку невидимой */
+  pointer-events: none; /* Отключаем возможность взаимодействия с кнопкой */
+}
 .buttons {
   button {
     margin-left: 10px;
