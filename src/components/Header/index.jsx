@@ -22,11 +22,14 @@ const location = useLocation();
     
   };
 const isLoginPage = location.pathname === '/login';
+const isRegisterPage = location.pathname === '/register';
+
+
   return (
     <div className={styles.root}>
       <Container maxWidth="lg">
         <div className={styles.inner}>
-          {!isLoginPage && (
+          {!isLoginPage && !isRegisterPage && (
             <>
                {isAuth && userData ? (
                 <Link className={styles.logo} to="/">
