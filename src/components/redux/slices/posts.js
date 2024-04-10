@@ -18,11 +18,7 @@ export const fetchTags = createAsyncThunk("posts/fetchTags", async () => {
   const { data } = await axios.get(`/tags`);
   return data;
 });
-export const fetchPostsTagsSuccess = (tag) => ({
-    type: "posts/fetchPostsTagsSuccess",
-    payload: tag,
-  });
-  ;
+
 
 export const fetchRemovePost = createAsyncThunk(
   "posts/fetchRemovePost",
@@ -47,11 +43,7 @@ const postSlice = createSlice({
     setSelectedTags(state, action) {
       state.selectedTag = action.payload;
     },
-    fetchPostsTagsSuccess(state, action) {
-        state.selectedTag = action.payload;
-      },
-
-  },
+},
   extraReducers: {
     // Получение статтей
     [fetchPosts.pending]: (state) => {

@@ -7,12 +7,10 @@ import { TagsBlock } from "../components/TagsBlock";
 import { CommentsBlock } from "../components/CommentsBlock";
 import {
   fetchPosts,
-  fetchPostsTagsSuccess,
   fetchTags,
 } from "../components/redux/slices/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import axios from "../components/axios";
 
 
 export const Home = () => {
@@ -28,22 +26,15 @@ export const Home = () => {
     dispatch(fetchTags());
   }, []);
 
-  const handleOnTagClick = async (tag) => {
-    try {
-      const response = await axios.get(`/posts/tags/${tag}`);
-      const data = response.data;
-      dispatch(setSelectedTag(tag));
-      dispatch(fetchPostsTagsSuccess(data));
-      return data;
-
-    } catch (error) {
-      console.error("Error fetching posts with the selected tag:", error);
-    }
+  const handleOnTagClick = (tag) => {
+    dispatch(setSelectedTag(tag));
   };
 
   const filteredPosts = selectedTag
-  ? posts.items.filter((post) => post.tags.includes(selectedTag))
-  : posts.items;
+    ? posts.items.filter((post) => post.tags.includes(selectedTag))
+    : posts.items;
+
+
   return (
     <>
       <div
