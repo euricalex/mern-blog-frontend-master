@@ -1,0 +1,38 @@
+a {
+    text-decoration: none;
+}
+.tabs {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    }
+    
+
+
+.new {
+    position: relative;
+    color: #4361ee;
+    font-weight: 400;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+
+}
+
+.popular {
+
+    color: rgba(0, 0, 0, 1.5);
+    font-weight: 400;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+}
+
+
+  
+  .headerTag {
+    margin-bottom: 20px; /* Примерное значение */
+    position: absolute;
+    top: 90px; /* Значение должно быть равно или больше, чем отрицательный margin-bottom */
+  }
+  
