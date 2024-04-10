@@ -7,7 +7,7 @@ import Avatar from '@mui/material/Avatar';
 
 import styles from './Login.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAuthRegister, selectIsAuth } from '../../components/redux/slices/auth';
+import { fetchAuthMe, fetchAuthRegister, selectIsAuth } from '../../components/redux/slices/auth';
 import { Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
@@ -31,6 +31,7 @@ export const Registration = () => {
     }
     if('token' in data.payload) {
      window.localStorage.setItem('token', data.payload.token);
+     dispatch(fetchAuthMe()); // Вызовите fetchAuthMe после успешной аутентификации
     } else {
      alert('No registration');
     }

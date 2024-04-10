@@ -15,7 +15,7 @@ root.render(
   <Provider store={store}>
     <CssBaseline />
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
+      <BrowserRouter basename="/mern-blog-frontend-master">
         <App />
       </BrowserRouter>
     </ThemeProvider>

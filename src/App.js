@@ -11,9 +11,12 @@ import { Popular } from "./pages/Popular";
 function App() {
   const dispatch = useDispatch();
 
+
   React.useEffect(() => {
     dispatch(fetchAuthMe());
   }, []);
+
+  
   return (
     <>
       <Header />

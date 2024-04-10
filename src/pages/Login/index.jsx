@@ -8,11 +8,11 @@ import Button from "@mui/material/Button";
 import styles from "./Login.module.scss";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAuth, selectIsAuth } from "../../components/redux/slices/auth";
+import { fetchAuth, fetchAuthMe, selectIsAuth } from "../../components/redux/slices/auth";
 
 
 export const Login = () => {
-  const isAuth = useSelector(selectIsAuth)
+  const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
 
 
@@ -30,6 +30,7 @@ export const Login = () => {
    }
    if('token' in data.payload) {
     window.localStorage.setItem('token', data.payload.token);
+    dispatch(fetchAuthMe()); // Вызовите fetchAuthMe после успешной аутентификации
 
 
    } else {
@@ -37,18 +38,12 @@ export const Login = () => {
    }
   };
 
-  React.useEffect(() =>  {
-   
-   if(isAuth) {
-    window.location.reload();
-   }
-  
-  }, [isAuth])
-
-  if(isAuth) {
-    window.location.reload();
-    return <Navigate to = "/"/>;
+  // Если пользователь уже аутентифицирован, перенаправляем его на главную страницу
+  if (isAuth) {
+    return <Navigate to="/" />;
   }
+
+ 
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">
